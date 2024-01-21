@@ -30,6 +30,8 @@ class MakeOrderActivity : AppCompatActivity() {
             }
         }
         binding.radioButtonTea.isChecked = true
+
+        binding.buttonMakeOrder.setOnClickListener { onUserMadeOrder() }
     }
 
     private fun onUserMadeOrder() {

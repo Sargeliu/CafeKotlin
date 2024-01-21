@@ -1,10 +1,8 @@
 package com.example.cafekotlin
 
-import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.inputmethod.InputBinding
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.cafekotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
