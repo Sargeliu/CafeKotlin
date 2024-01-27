@@ -35,32 +35,28 @@ class MakeOrderActivity : AppCompatActivity() {
     }
 
     private fun onUserMadeOrder() {
-        val additives = arrayListOf<String>()
-        if (binding.checkBoxSugar.isChecked) {
-            additives.add(binding.checkBoxSugar.text.toString())
-        }
-        if (binding.checkBoxMilk.isChecked) {
-            additives.add(binding.checkBoxMilk.text.toString())
-        }
-        if (binding.radioButtonTea.isChecked && binding.checkBoxLemon.isChecked) {
-            additives.add(binding.checkBoxLemon.text.toString())
+        val additives = listOfNotNull(
+            binding.checkBoxSugar.takeIf { it.isChecked }?.text.toString(),
+            binding.checkBoxMilk.takeIf { it.isChecked }?.text.toString(),
+            binding.checkBoxLemon.takeIf { binding.radioButtonTea.isChecked && it.isChecked }?.text.toString()
+        )
+
+        val drinkType = when {
+            binding.radioButtonTea.isChecked -> binding.spinnerTea.selectedItem.toString()
+            binding.radioButtonCoffee.isChecked -> binding.spinnerCoffee.selectedItem.toString()
+            else -> ""
         }
 
-        var drinkType: String = ""
-        if (binding.radioButtonTea.isChecked) {
-            drinkType = binding.spinnerTea.selectedItem.toString()
-        } else if (binding.radioButtonCoffee.isChecked) {
-            drinkType = binding.spinnerCoffee.selectedItem.toString()
-        }
-
-        val intent = OrderDetailActivity.newIntent(this,
+        val intent = OrderDetailActivity.newIntent(
+            this,
             userName,
             drink,
-            additives.toString(),
+            additives.joinToString(),
             drinkType
-            )
+        )
         startActivity(intent)
     }
+
 
 
     private fun onUserChooseTea() {

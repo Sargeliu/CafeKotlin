@@ -34,7 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:hint="@string/user_name"
-        android:inputType="textCapWords" />
+        android:inputType="textCapWords"
+        android:autofillHints="name" />
 
     <EditText
         android:id="@+id/editTextPassword"
